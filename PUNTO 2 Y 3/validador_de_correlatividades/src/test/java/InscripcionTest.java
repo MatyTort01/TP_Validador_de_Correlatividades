@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class InscripcionTest {
     @Test
-    public void inscripcionVaciaAprobada(){
-        // El alumno solicita una inscripcion vacia.
+    public void inscripcionVaciaAprobada() {
+        // El alumno solicita una inscripcion vacia. Dado que no se aclara que no se pueden realizar inscripciones vacias, asumi que se puede ya que, por ejemplo, en el sistema de inscripciones de la utn se puede dejar una alternativa vacia.
         Alumno alumno = new Alumno(1234567);
         Inscripcion inscripcion = new Inscripcion(alumno);
 
@@ -15,7 +15,7 @@ public class InscripcionTest {
     }
 
     @Test
-    public void inscripcionUnaMateriaSinCorrelativasAprobada(){
+    public void inscripcionUnaMateriaSinCorrelativasAprobada() {
         // El alumno solicita la inscripcion a una materia que NO posee correlativas.
         Alumno alumno = new Alumno(1234567);
         Materia inglesI = new Materia("Ingles I");
@@ -26,7 +26,7 @@ public class InscripcionTest {
     }
 
     @Test
-    public void inscripcionUnaMateriaConCorrelativaAceptada(){
+    public void inscripcionUnaMateriaConCorrelativaAceptada() {
         // El alumno solicita la inscripcion a una materia que posee una correlativa. El alumno tiene aprobada la correlativa.
         Alumno alumno = new Alumno(1234567);
         Materia inglesI = new Materia("Ingles I");
@@ -40,7 +40,7 @@ public class InscripcionTest {
     }
 
     @Test
-    public void inscripcionUnaMateriaConCorrelativaRechazada(){
+    public void inscripcionUnaMateriaConCorrelativaRechazada() {
         // El alumno solicita la inscripcion a una materia que posee una correlativa. El alumno NO tiene aprobada la correlativa.
         Alumno alumno = new Alumno(1234567);
         Materia inglesI = new Materia("Ingles I");
@@ -53,7 +53,7 @@ public class InscripcionTest {
     }
 
     @Test
-    public void inscripcionVariasMateriasConCorrelativasAceptada(){
+    public void inscripcionVariasMateriasConCorrelativasAceptada() {
         // El alumno solicita la inscripcion a dos materia que poseen cada una de ellas dos correlativas. El alumno tiene aprobadas todas las correlativas.
         Alumno alumno = new Alumno(1234567);
         Materia sistemasYOrganizaciones = new Materia("Sistemas y Organizaciones");
@@ -72,7 +72,7 @@ public class InscripcionTest {
     }
 
     @Test
-    public void inscripcionVariasMateriasConCorrelativasRechazada(){
+    public void inscripcionVariasMateriasConCorrelativasRechazada() {
         // El alumno solicita la inscripcion a dos materia que poseen cada una de ellas dos correlativas. El alumno tiene aprobadas las dos correlativas de una materia pero solo una de la otra materia.
         Alumno alumno = new Alumno(1234567);
         Materia sistemasYOrganizaciones = new Materia("Sistemas y Organizaciones");

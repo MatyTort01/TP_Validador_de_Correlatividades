@@ -17,7 +17,7 @@ public class Alumno {
         Collections.addAll(this.materiasAprobadas, materias);
     }
 
-    public boolean aproboCorrelativas(Materia materia){
+    public boolean aproboCorrelativas(Materia materia) {
         return this.materiasAprobadas.containsAll(materia.getMateriasCorrelativas());
     }
 }

@@ -17,12 +17,12 @@ public class Inscripcion {
         Collections.addAll(this.materias, materias);
     }
 
-    public boolean materiaAprobada(Materia materia){
-        // Devuelve si el alumno que realizo la inscripcion tiene todas las correlativas pertintentes a la materia pasada por parametro aprobadas
+    public boolean materiaAprobada(Materia materia) {
+        // Se corrobora si el alumno que realizo la inscripcion tiene aprobadas TODAS las materias correlativas a la materia que se recibe por parametro.
         return this.alumno.aproboCorrelativas(materia);
     }
 
-    public boolean aprobada(){
+    public boolean aprobada() {
         // Para que la inscripcion sea aprobada el alumno debe tener TODAS las correlativas aprobadas de CADA materia de la lista de materias de la inscripcion.
         return this.materias.stream().allMatch(materia -> this.materiaAprobada(materia));
     }
