@@ -1,0 +1,92 @@
+import domain.Alumno;
+import domain.Inscripcion;
+import domain.Materia;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class InscripcionTest {
+    @Test
+    public void inscripcionVaciaAprobada(){
+        // El alumno solicita una inscripcion vacia.
+        Alumno alumno = new Alumno(1234567);
+        Inscripcion inscripcion = new Inscripcion(alumno);
+
+        Assert.assertTrue(inscripcion.aprobada());
+    }
+
+    @Test
+    public void inscripcionUnaMateriaSinCorrelativasAprobada(){
+        // El alumno solicita la inscripcion a una materia que NO posee correlativas.
+        Alumno alumno = new Alumno(1234567);
+        Materia inglesI = new Materia("Ingles I");
+        Inscripcion inscripcion = new Inscripcion(alumno);
+        inscripcion.agregarMaterias(inglesI);
+
+        Assert.assertTrue(inscripcion.aprobada());
+    }
+
+    @Test
+    public void inscripcionUnaMateriaConCorrelativaAceptada(){
+        // El alumno solicita la inscripcion a una materia que posee una correlativa. El alumno tiene aprobada la correlativa.
+        Alumno alumno = new Alumno(1234567);
+        Materia inglesI = new Materia("Ingles I");
+        alumno.agregarMateriasAprobadas(inglesI);
+        Materia inglesII = new Materia("Ingles II");
+        inglesII.agregarMateriasCorrelativas(inglesI);
+        Inscripcion inscripcion = new Inscripcion(alumno);
+        inscripcion.agregarMaterias(inglesII);
+
+        Assert.assertTrue(inscripcion.aprobada());
+    }
+
+    @Test
+    public void inscripcionUnaMateriaConCorrelativaRechazada(){
+        // El alumno solicita la inscripcion a una materia que posee una correlativa. El alumno NO tiene aprobada la correlativa.
+        Alumno alumno = new Alumno(1234567);
+        Materia inglesI = new Materia("Ingles I");
+        Materia inglesII = new Materia("Ingles II");
+        inglesII.agregarMateriasCorrelativas(inglesI);
+        Inscripcion inscripcion = new Inscripcion(alumno);
+        inscripcion.agregarMaterias(inglesII);
+
+        Assert.assertFalse(inscripcion.aprobada());
+    }
+
+    @Test
+    public void inscripcionVariasMateriasConCorrelativasAceptada(){
+        // El alumno solicita la inscripcion a dos materia que poseen cada una de ellas dos correlativas. El alumno tiene aprobadas todas las correlativas.
+        Alumno alumno = new Alumno(1234567);
+        Materia sistemasYOrganizaciones = new Materia("Sistemas y Organizaciones");
+        Materia algoritmosYEstructuraDeDatos = new Materia("Algoritmos y Estructura de Datos");
+        Materia fisicaI = new Materia("Fisica I");
+        Materia analisisMatematicoI = new Materia("Analisis Matematico I");
+        alumno.agregarMateriasAprobadas(sistemasYOrganizaciones, algoritmosYEstructuraDeDatos, fisicaI, analisisMatematicoI);
+        Materia analisisDeSistemas = new Materia("Analisis de Sistemas");
+        analisisDeSistemas.agregarMateriasCorrelativas(sistemasYOrganizaciones, algoritmosYEstructuraDeDatos);
+        Materia fisicaII = new Materia("Fisica II");
+        fisicaII.agregarMateriasCorrelativas(fisicaI, analisisMatematicoI);
+        Inscripcion inscripcion = new Inscripcion(alumno);
+        inscripcion.agregarMaterias(analisisDeSistemas, fisicaII);
+
+        Assert.assertTrue(inscripcion.aprobada());
+    }
+
+    @Test
+    public void inscripcionVariasMateriasConCorrelativasRechazada(){
+        // El alumno solicita la inscripcion a dos materia que poseen cada una de ellas dos correlativas. El alumno tiene aprobadas las dos correlativas de una materia pero solo una de la otra materia.
+        Alumno alumno = new Alumno(1234567);
+        Materia sistemasYOrganizaciones = new Materia("Sistemas y Organizaciones");
+        Materia algoritmosYEstructuraDeDatos = new Materia("Algoritmos y Estructura de Datos");
+        Materia fisicaI = new Materia("Fisica I");
+        Materia analisisMatematicoI = new Materia("Analisis Matematico I");
+        alumno.agregarMateriasAprobadas(sistemasYOrganizaciones, algoritmosYEstructuraDeDatos, fisicaI);
+        Materia analisisDeSistemas = new Materia("Analisis de Sistemas");
+        analisisDeSistemas.agregarMateriasCorrelativas(sistemasYOrganizaciones, algoritmosYEstructuraDeDatos);
+        Materia fisicaII = new Materia("Fisica II");
+        fisicaII.agregarMateriasCorrelativas(fisicaI, analisisMatematicoI);
+        Inscripcion inscripcion = new Inscripcion(alumno);
+        inscripcion.agregarMaterias(analisisDeSistemas, fisicaII);
+
+        Assert.assertFalse(inscripcion.aprobada());
+    }
+}
