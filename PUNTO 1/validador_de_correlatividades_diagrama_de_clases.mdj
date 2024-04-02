@@ -888,6 +888,7 @@
 									"model": {
 										"$ref": "AAAAAAGOlmAeDpJ+NkY="
 									},
+									"visible": false,
 									"font": "Arial;13;0",
 									"left": 400,
 									"top": 256,
@@ -950,6 +951,7 @@
 									"model": {
 										"$ref": "AAAAAAGOlmAeDpJ/XG8="
 									},
+									"visible": false,
 									"font": "Arial;13;0",
 									"left": 362,
 									"top": 256,
@@ -1330,8 +1332,7 @@
 								},
 								"reference": {
 									"$ref": "AAAAAAGOhSkZlKg7WIQ="
-								},
-								"multiplicity": "0..*"
+								}
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -1342,8 +1343,7 @@
 								"reference": {
 									"$ref": "AAAAAAGOhSsKTqlda0I="
 								},
-								"aggregation": "shared",
-								"multiplicity": "1"
+								"aggregation": "shared"
 							}
 						}
 					],
