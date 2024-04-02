@@ -135,7 +135,7 @@
 											"top": 262,
 											"width": 281.6806640625,
 											"height": 13,
-											"text": "-nombre",
+											"text": "-nombre: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -152,7 +152,7 @@
 											"top": 277,
 											"width": 281.6806640625,
 											"height": 13,
-											"text": "-materiasCorrelativas",
+											"text": "-materiasCorrelativas: List<Materia>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1356,7 +1356,7 @@
 							},
 							"name": "nombre",
 							"visibility": "private",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1366,7 +1366,7 @@
 							},
 							"name": "materiasCorrelativas",
 							"visibility": "private",
-							"type": ""
+							"type": "List<Materia>"
 						}
 					],
 					"operations": [
